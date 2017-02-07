@@ -1,11 +1,16 @@
 package com.epochmc.portalpluginlegacy;
 
-import org.bukkit.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.material.Wool;
+import org.bukkit.World;
+import org.bukkit.Material;
+import org.bukkit.DyeColor;
+import org.bukkit.Location;
+import org.bukkit.ChatColor;
+
 import org.bukkit.block.Block;
 
 public class PortalListener implements Listener {
