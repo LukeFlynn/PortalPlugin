@@ -1,0 +1,6 @@
+name: LegacyPortalPlugin
+main: com.epochmc.portalpluginlegacy.PortalPlugin
+version: 1.0
+authors:
+  - dotblank (event logic)
+  - LukeFlynn (data value rewrite)
