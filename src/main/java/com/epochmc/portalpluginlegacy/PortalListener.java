@@ -360,6 +360,7 @@ public class PortalListener implements Listener {
                         && Math.abs(loc.getZ()-event.getPlayer().getWorld().getSpawnLocation().getZ())<=limit)
                 {
                     event.getPlayer().sendMessage(ChatColor.DARK_GRAY+"Teleporting to "+loc.getX()+" "+loc.getY()+" "+loc.getZ());
+
                     //event.getPlayer().teleportTo(loc);
                     if(!event.getPlayer().teleport(loc)) {
                         event.getPlayer().sendMessage(ChatColor.RED+"Something went terribly wrong with the teleport! It didn't work!");
