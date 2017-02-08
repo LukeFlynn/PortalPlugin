@@ -1,6 +1,7 @@
 name: LegacyPortalPlugin
 main: com.epochmc.portalpluginlegacy.PortalPlugin
-version: 1.0
+version: 1.0-LEGACY
 authors:
-  - dotblank (event logic)
-  - LukeFlynn (data value rewrite)
+  - dotblank (original author)
+  - HACKhalo2 (original maintainer)
+  - LukeFlynn (partial rewrite)
