@@ -1,6 +1,6 @@
-name: LegacyPortalPlugin
-main: com.epochmc.portalpluginlegacy.PortalPlugin
-version: 1.0-LEGACY
+name: PortalPlugin
+main: com.epochmc.portalpluginlPlugin
+version: 1.0-RELEASE
 authors:
   - dotblank (original author)
   - HACKhalo2 (original maintainer)

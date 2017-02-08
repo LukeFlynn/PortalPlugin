@@ -1,4 +1,4 @@
-package com.epochmc.portalpluginlegacy;
+package com.epochmc.portalplugin;
 
 import java.util.HashMap;
 import org.bukkit.plugin.java.JavaPlugin;
