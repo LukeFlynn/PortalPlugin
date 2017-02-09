@@ -23,11 +23,6 @@ public class LegacyPortalListener implements Listener {
         plugin = instance;
     }
 
-    public int getLimit() {
-        int limit = plugin.config.getInt("border-limit", 2000);
-        return limit;
-    }
-
 
     public int getEncodeVal(Mode m, int X, int Z, int Y, World w) {
         Material mat = w.getBlockAt(X, Y, Z).getType();
@@ -365,7 +360,7 @@ public class LegacyPortalListener implements Listener {
                     //else
                     //	loc.z += 0.5f;
 
-                    int limit = plugin.getConfig().getInt("border-limit", 1000);
+                    int limit = plugin.getLimit();
                     if(Math.abs(loc.getX()-event.getPlayer().getWorld().getSpawnLocation().getX())<=limit
                             && Math.abs(loc.getZ()-event.getPlayer().getWorld().getSpawnLocation().getZ())<=limit)
                     {

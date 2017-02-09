@@ -19,20 +19,14 @@ import org.bukkit.material.Wool;
 import java.lang.reflect.Array;
 import java.util.Arrays;
 
-
 public class PortalListener implements Listener {
 
     private final PortalPlugin plugin;
-    private LegacyPortalListener legListener;
 
     public PortalListener(PortalPlugin instance) {
         plugin = instance;
     }
 
-    public int getLimit() {
-        int limit = plugin.config.getInt("border-limit", 2000);
-        return limit;
-    }
 
     public int getEncodeVal(int X, int Z, int Y, World w) {
         Block block = w.getBlockAt(X, Y, Z);
@@ -248,7 +242,7 @@ public class PortalListener implements Listener {
 
 
 
-                    int limit = getLimit();
+                    int limit = plugin.getLimit();
                     Location center = null;
                     if (plugin.config.getBoolean("center-origin", false)) {
                         center = new Location(event.getPlayer().getWorld(), 0, 0, 0);

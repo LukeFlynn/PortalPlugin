@@ -36,6 +36,11 @@ public class PortalPlugin extends JavaPlugin {
         return world;
     }
 
+    public int getLimit() {
+        int limit = config.getInt("border-limit", 2000);
+        return limit;
+    }
+
     public void loadConfiguration() {
         String limit = "border-limit";
         String legacyMode = "legacy-mode-worlds";
@@ -53,9 +58,9 @@ public class PortalPlugin extends JavaPlugin {
         PluginManager pm = getServer().getPluginManager();
         pm.registerEvents(listener, this);
         pm.registerEvents(legListener, this);
-        getServer().getLogger().info(pdf.getName() + " version " + pdf.getVersion() + " is enabled! " + "Border Limit: " + listener.getLimit());
+        getServer().getLogger().info(pdf.getName() + " version " + pdf.getVersion() + " is enabled! " + "Border Limit: " + getLimit());
         if (getServer().getWorlds().contains(getLegacyModeWorlds())) {
-            getServer().getLogger().info(pdf.getName() + " version " + pdf.getVersion() + " Legacy mode is enabled in worlds(s) " +  getLegacyModeWorlds().getName() + " Border Limit: " + legListener.getLimit());
+            getServer().getLogger().info(pdf.getName() + " version " + pdf.getVersion() + " Legacy mode is enabled in worlds(s) " +  getLegacyModeWorlds().getName() + " Border Limit: " + getLimit());
         } else {
             getServer().getLogger().info(pdf.getName() + " version " + pdf.getVersion() + " Did not find any world(s) (" + getLegacyModeWorlds() + ") eligible for legacy mode!");
         }
