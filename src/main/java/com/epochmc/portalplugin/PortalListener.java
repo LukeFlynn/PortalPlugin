@@ -5,19 +5,13 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
-
 import org.bukkit.event.player.PlayerTeleportEvent.TeleportCause;
-
 import org.bukkit.DyeColor;
 import org.bukkit.ChatColor;
 import org.bukkit.World;
 import org.bukkit.Material;
 import org.bukkit.Location;
-
 import org.bukkit.material.Wool;
-
-import java.lang.reflect.Array;
-import java.util.Arrays;
 
 public class PortalListener implements Listener {
 
@@ -26,7 +20,6 @@ public class PortalListener implements Listener {
     public PortalListener(PortalPlugin instance) {
         plugin = instance;
     }
-
 
     public int getEncodeVal(int X, int Z, int Y, World w) {
         Block block = w.getBlockAt(X, Y, Z);
@@ -262,6 +255,5 @@ public class PortalListener implements Listener {
             }
             return;
         }
-        return;
     }
 }

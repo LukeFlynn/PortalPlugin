@@ -10,19 +10,16 @@ import org.bukkit.Material;
 import org.bukkit.DyeColor;
 import org.bukkit.Location;
 import org.bukkit.ChatColor;
-
 import org.bukkit.block.Block;
 
 public class LegacyPortalListener implements Listener {
     private final PortalPlugin plugin;
-    public int val;
 
     public enum Mode {Legacy, Wool}
 
     public LegacyPortalListener(PortalPlugin instance) {
         plugin = instance;
     }
-
 
     public int getEncodeVal(Mode m, int X, int Z, int Y, World w) {
         Material mat = w.getBlockAt(X, Y, Z).getType();
@@ -382,6 +379,5 @@ public class LegacyPortalListener implements Listener {
 
             return;
         }
-        return;
     }
 }

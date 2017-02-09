@@ -1,10 +1,7 @@
 package com.epochmc.portalplugin;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-
-import org.bukkit.ChatColor;
 import org.bukkit.World;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.Location;
