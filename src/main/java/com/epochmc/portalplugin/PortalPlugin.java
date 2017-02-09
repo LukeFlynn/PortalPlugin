@@ -20,7 +20,7 @@ public class PortalPlugin extends JavaPlugin {
 
     public void loadConfiguration() {
         String limit = "border-limit";
-        getConfig().addDefault(limit, "50000000");
+        getConfig().addDefault(limit, 2000);
         getConfig().options().copyDefaults(true);
         saveConfig();
     }
@@ -32,6 +32,6 @@ public class PortalPlugin extends JavaPlugin {
         // Register our events
         PluginManager pm = getServer().getPluginManager();
         pm.registerEvents(listener, this);
-        getServer().getLogger().info(pdf.getName() + " version " + pdf.getVersion() + " is enabled!");
+        getServer().getLogger().info(pdf.getName() + " version " + pdf.getVersion() + " is enabled! " + "Border Limit: " + listener.getLimit());
     }
 }

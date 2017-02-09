@@ -1,5 +1,5 @@
 name: PortalPlugin
-main: com.epochmc.portalplugin
+main: com.epochmc.portalplugin.PortalPlugin
 version: 1.0-RELEASE
 authors:
   - dotblank (original author)

@@ -1,6 +1,5 @@
 package com.epochmc.portalplugin;
 
-import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.event.Listener;
 import org.bukkit.event.EventHandler;
@@ -8,7 +7,18 @@ import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 
 import org.bukkit.event.player.PlayerTeleportEvent.TeleportCause;
+
+import org.bukkit.DyeColor;
+import org.bukkit.ChatColor;
+import org.bukkit.World;
+import org.bukkit.Material;
+import org.bukkit.Location;
+
 import org.bukkit.material.Wool;
+
+import java.lang.reflect.Array;
+import java.util.Arrays;
+
 
 public class PortalListener implements Listener {
 
@@ -16,6 +26,11 @@ public class PortalListener implements Listener {
 
     public PortalListener(PortalPlugin instance) {
         plugin = instance;
+    }
+
+    public int getLimit() {
+         int limit = plugin.config.getInt("border-limit", 2000);
+         return limit;
     }
 
     public int getEncodeVal(int X, int Z, int Y, World w) {
@@ -67,10 +82,10 @@ public class PortalListener implements Listener {
         for (int i = 0; i < depth; i++) {
             codes[i] = getEncodeVal(x, z, y - i, w);
         }
-        return convertbase(codes, depth);
+        return convertBase(codes, depth);
     }
 
-    private int convertbase(int[] code, int codenum) {
+    private int convertBase(int[] code, int codenum) {
         int total = 0;
         int base = 16;
         for (int i = 0; i < codenum; i++) {
@@ -109,11 +124,10 @@ public class PortalListener implements Listener {
         int modZ = (int) (to.getZ() < 0 ? to.getZ() - 1 : to.getZ());
 
         Material block = w.getBlockAt(modX, (int) to.getY(), modZ).getType();
-        Material[] triggers = {Material.STONE_PLATE, Material.WOOD_PLATE, Material.ENDER_PORTAL};
-        Material netherPortal = Material.PORTAL;
         Material anchor = Material.SPONGE;
+        Material netherPortal = Material.PORTAL;
 
-        if (block.equals(triggers)) {
+        if (block.equals(Material.STONE_PLATE) || (block.equals(Material.WOOD_PLATE)) || (block.equals(Material.ENDER_PORTAL)) || (block.equals(Material.PORTAL))) {
 
             int orientationlevel = (int) to.getY() - 1;
 
@@ -124,16 +138,16 @@ public class PortalListener implements Listener {
             }
 
             if (readdirection == -1) {
-                if (w.getBlockAt(modX - 1, orientationlevel, modZ).equals(anchor)) {
+                if (w.getBlockAt(modX - 1, orientationlevel, modZ).getType().equals(anchor)) {
                     readdirection = 0;
                 }
-                if (w.getBlockAt(modX + 1, orientationlevel, modZ).equals(anchor)) {
+                if (w.getBlockAt(modX + 1, orientationlevel, modZ).getType().equals(anchor)) {
                     readdirection = 2;
                 }
-                if (w.getBlockAt(modX, orientationlevel, modZ + 1).equals(anchor)) {
+                if (w.getBlockAt(modX, orientationlevel, modZ + 1).getType().equals(anchor)) {
                     readdirection = 3;
                 }
-                if (w.getBlockAt(modX, orientationlevel, modZ - 1).equals(anchor)) {
+                if (w.getBlockAt(modX, orientationlevel, modZ - 1).getType().equals(anchor)) {
                     readdirection = 1;
                 }
             }
@@ -154,7 +168,7 @@ public class PortalListener implements Listener {
                         goto1 = -readColumn(modX + 1, modZ, orientationlevel - 1, 4, w);
                         rotation = readColumn(modX - 1, modZ, orientationlevel - 3, 1, w) * 45;
                         xcodenum = 1;
-                        if (w.getBlockAt(modX - 1, orientationlevel - 4, modZ).equals(anchor)) {
+                        if (w.getBlockAt(modX - 1, orientationlevel - 4, modZ).getType().equals(anchor)) {
                             goto2 = -readColumn(modX, modZ, orientationlevel - 1, 4, w);
                         } else {
                             goto2 = readColumn(modX, modZ, orientationlevel - 1, 4, w);
@@ -166,7 +180,7 @@ public class PortalListener implements Listener {
                         goto1 = -readColumn(modX, modZ + 1, orientationlevel - 1, 4, w);
                         rotation = readColumn(modX, modZ - 1, orientationlevel - 3, 1, w) * 45;
                         xcodenum = 2;
-                        if (w.getBlockAt(modX, orientationlevel - 4, modZ - 1).equals(anchor)) {
+                        if (w.getBlockAt(modX, orientationlevel - 4, modZ - 1).getType().equals(anchor)) {
                             goto2 = -readColumn(modX, modZ, orientationlevel - 1, 4, w);
                         } else {
                             goto2 = readColumn(modX, modZ, orientationlevel - 1, 4, w);
@@ -178,7 +192,7 @@ public class PortalListener implements Listener {
                         goto1 = readColumn(modX - 1, modZ, orientationlevel - 1, 4, w);
                         rotation = readColumn(modX + 1, modZ, orientationlevel - 3, 1, w) * 45;
                         xcodenum = 1;
-                        if (w.getBlockAt(modX + 1, orientationlevel - 4, modZ).equals(anchor)) {
+                        if (w.getBlockAt(modX + 1, orientationlevel - 4, modZ).getType().equals(anchor)) {
                             goto2 = readColumn(modX, modZ, orientationlevel - 1, 4, w);
                         } else {
                             goto2 = -readColumn(modX, modZ, orientationlevel - 1, 4, w);
@@ -190,7 +204,7 @@ public class PortalListener implements Listener {
                         goto1 = readColumn(modX, modZ - 1, orientationlevel - 1, 4, w);
                         rotation = readColumn(modX, modZ + 1, orientationlevel - 3, 1, w) * 45;
                         xcodenum = 2;
-                        if (w.getBlockAt(modX, orientationlevel - 4, modZ + 1).equals(anchor)) {
+                        if (w.getBlockAt(modX, orientationlevel - 4, modZ + 1).getType().equals(anchor)) {
                             goto2 = readColumn(modX, modZ, orientationlevel - 1, 4, w);
                         } else {
                             goto2 = -readColumn(modX, modZ, orientationlevel - 1, 4, w);
@@ -230,7 +244,7 @@ public class PortalListener implements Listener {
 
 
 
-                int limit = plugin.config.getInt("border-limit", 1000);
+                int limit = getLimit();
                 Location center = null;
                 if (plugin.config.getBoolean("center-origin", false)) {
                     center = new Location(event.getPlayer().getWorld(), 0, 0, 0);
@@ -240,6 +254,7 @@ public class PortalListener implements Listener {
                 if (Math.abs(loc.getX() - center.getX()) <= limit
                         && Math.abs(loc.getZ() - center.getZ()) <= limit) {
                     event.getPlayer().sendMessage(ChatColor.DARK_GRAY + "Teleporting to " + loc.getX() + " " + loc.getY() + " " + loc.getZ());
+                    System.out.println("[" + plugin.pdf.getName() + "] Teleporting " + event.getPlayer().getName() +  " to " + loc.getX() + " " + loc.getY() + " " + loc.getZ());
                     event.getPlayer().teleport(loc, TeleportCause.PLUGIN);
                 } else {
                     event.getPlayer().sendMessage(ChatColor.RED + "Cannot Teleport you to " + loc.getX() + " "
